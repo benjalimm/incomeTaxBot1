@@ -12,3 +12,7 @@
   "author": "Benjamin Lim <keymote@gmail.com>",
   "license": "ISC"
 }
+
+"scripts": {
+  "start": "node server.js"
+}
