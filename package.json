@@ -1,0 +1,14 @@
+{
+  "name": "npm-bot-pkg",
+  "version": "1.0.0",
+  "description": "a demo for bot ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "demo"
+  ],
+  "author": "Benjamin Lim <keymote@gmail.com>",
+  "license": "ISC"
+}
