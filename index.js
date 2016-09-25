@@ -39,6 +39,8 @@ app.post('/webhook/', function (req, res) {
             if (text === 'Generic') {
                 sendGenericMessage(sender)
                 continue
+            } else if text.contains('Hey') {
+              sendTextMessage(sender, "Hey there baby gurrlll")
             }
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
@@ -52,6 +54,15 @@ app.post('/webhook/', function (req, res) {
 })
 
 var token = "EAAJCLxLPxrQBAOxGQPRh6xmWEnFdlZAcWbg5bUWm2k2eOzUPLC5WEAZCzr1Ti2cIDU3qEUlI0fbEsYiKQxF2v4LYmL0EQCjtmEmGnaIy4MZCZC2mG2Gmo99XOcQ5lKelojZB3vqpoFCJZCUpMG69R3Xf3qm0L1DxQ5zte3Cl3M3AZDZD"
+
+// function replyToMessage(sender, text) {
+//   var message = event.message.text;
+//   var splitMessage = message.split()
+//   if "poop" in splitMessage {
+//     te
+//   }
+//
+// }
 
 function sendTextMessage(sender, text) {
     messageData = {
@@ -122,3 +133,6 @@ function sendGenericMessage(sender) {
         }
     })
 }
+
+//extensions
+String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
