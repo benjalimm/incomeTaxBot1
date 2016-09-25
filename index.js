@@ -35,10 +35,10 @@ app.post('/webhook/', function (req, res) {
         event = req.body.entry[0].messaging[i]
         sender = event.sender.id
         if (event.message && event.message.text) {
+          const welcomeMessage = "Hey there, I'm the Australian Income-Tax Bot, I'm going to help you figure out your Income tax!"
+          sendTextMessage(sender, welcomeMessage)
+          continue 
             text = event.message.text
-            const welcomeMessage = "Hey there, I'm the Australian Income-Tax Bot, I'm going to help you figure out your Income tax!"
-            sendTextMessage(sender, welcomeMessage)
-            continue 
             if (text === 'Generic') {
                 sendGenericMessage(sender)
                 continue
