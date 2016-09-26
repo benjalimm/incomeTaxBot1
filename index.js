@@ -41,7 +41,7 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
           sendTextMessage(sender, helloRandomizer)
-            text = event.message.text
+            text = event.message.text.toLowerCase()
             if (text === 'Generic') {
                 sendGenericMessage(sender)
                 continue
