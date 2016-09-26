@@ -1,7 +1,11 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
+var builder = require('botbuilder');
+var connector = new builder.ConsoleConnector().listen();
+var bot = new builder.UniversalBot(connector);
 var app = express()
+
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -40,13 +44,12 @@ app.post('/webhook/', function (req, res) {
         event = req.body.entry[0].messaging[i]
         sender = event.sender.id
         if (event.message && event.message.text) {
-          sendTextMessage(sender, helloRandomizer)
             text = event.message.text.toLowerCase()
             if (text.contains("options")) {
                 sendGenericMessage(sender)
                 continue
             } else if (text.contains("hey")) {
-              sendTextMessage(sender, "Hey there baby gurrlll")
+              sendTextMessage(sender, helloRandomizer)
               break
             }
             // sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
@@ -62,15 +65,6 @@ app.post('/webhook/', function (req, res) {
 })
 
 var token = "EAAJCLxLPxrQBAOxGQPRh6xmWEnFdlZAcWbg5bUWm2k2eOzUPLC5WEAZCzr1Ti2cIDU3qEUlI0fbEsYiKQxF2v4LYmL0EQCjtmEmGnaIy4MZCZC2mG2Gmo99XOcQ5lKelojZB3vqpoFCJZCUpMG69R3Xf3qm0L1DxQ5zte3Cl3M3AZDZD"
-
-// function replyToMessage(sender, text) {
-//   var message = event.message.text;
-//   var splitMessage = message.split()
-//   if "poop" in splitMessage {
-//     te
-//   }
-//
-// }
 
 function sendTextMessage(sender, text) {
     messageData = {
