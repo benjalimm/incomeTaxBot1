@@ -44,12 +44,13 @@ app.post('/webhook/', function (req, res) {
         event = req.body.entry[0].messaging[i]
         sender = event.sender.id
         if (event.message && event.message.text) {
+          sendTextMessage(sender, helloRandomizer)
             text = event.message.text.toLowerCase()
             if (text.contains("options")) {
                 sendGenericMessage(sender)
                 continue
             } else if (text.contains("hey")) {
-              sendTextMessage(sender, helloRandomizer)
+              sendTextMessage(sender, "Hey there baby gurrlll")
               break
             }
             // sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
