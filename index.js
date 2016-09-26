@@ -30,7 +30,6 @@ app.listen(app.get('port'), function() {
 })
 
 // Hello Randomizer
-
 const hello = ["Hey there.", "Hello there.", "Eyy bra!"]
 const howCanIHelpYou = ["How may I be of assistance?", "How can I help you?", "Can I help you with anything"]
 const helloRandomizer = (hello[getRandom(0,2)] + " " + howCanIHelpYou[getRandom(0,2)])
@@ -42,11 +41,11 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
           sendTextMessage(sender, helloRandomizer)
-            text = event.message.text
+            text = event.message.text.toLowerCase()
             if (text === 'Generic') {
                 sendGenericMessage(sender)
                 continue
-            } else if (text.contains("Hey")) {
+            } else if (text.contains("hey")) {
               sendTextMessage(sender, "Hey there baby gurrlll")
               break
             }
@@ -144,8 +143,8 @@ function sendGenericMessage(sender) {
 }
 
 //extensions
-String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
+String.prototype.contains = function(it) { return this.indexOf(it) != -1; }; // checks to see if string contains ..
 
 function getRandom(min, max) {
-    return min + Math.floor(Math.random() * (max - min + 1));
+    return min + Math.floor(Math.random() * (max - min + 1)); // randomizes number
 }
