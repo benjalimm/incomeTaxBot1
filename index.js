@@ -33,9 +33,7 @@ app.listen(app.get('port'), function() {
 
 const hello = ["Hey there.", "Hello there.", "Eyy bra!"]
 const howCanIHelpYou = ["How may I be of assistance?", "How can I help you?", "Can I help you with anything"]
-const randomNumber1 = getRandom(0,2)
-const randomNumber2 = getRandom(0,2)
-const helloRandomizer = (hello[randomNumber1] + howCanIHelpYou[randomNumber2])
+const helloRandomizer = (hello[getRandom(0,2)] + " " + howCanIHelpYou[getRandom(0,2)])
 
 app.post('/webhook/', function (req, res) {
     messaging_events = req.body.entry[0].messaging
