@@ -42,7 +42,7 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
           sendTextMessage(sender, helloRandomizer)
             text = event.message.text
-            if (text.contains("options") {
+            if (text === 'Generic') {
                 sendGenericMessage(sender)
                 continue
             } else if (text.contains("hey")) {
