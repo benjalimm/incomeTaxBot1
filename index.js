@@ -1,9 +1,9 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
-var builder = require('botbuilder');
-var connector = new builder.ConsoleConnector().listen();
-var bot = new builder.UniversalBot(connector);
+// var builder = require('botbuilder');
+// var connector = new builder.ConsoleConnector().listen();
+// var bot = new builder.UniversalBot(connector);
 var app = express()
 
 
