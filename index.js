@@ -29,14 +29,21 @@ app.listen(app.get('port'), function() {
     console.log('running on port', app.get('port'))
 })
 
+// Hello Randomizer
+
+const hello = ["Hey there.", "Hello there.", "Eyy bra!"]
+const howCanIHelpYou = ["How may I be of assistance?", "How can I help you?", "Can I help you with anything"]
+var randomNumber1 = getRandom(0,2)
+var randomNumber2 = getRandom(0,2)
+const helloRandomizer = hello[randomNumber1] + howCanIHelpYou[randomNumber2]
+
 app.post('/webhook/', function (req, res) {
     messaging_events = req.body.entry[0].messaging
     for (i = 0; i < messaging_events.length; i++) {
         event = req.body.entry[0].messaging[i]
         sender = event.sender.id
         if (event.message && event.message.text) {
-          const welcomeMessage = "Hey there, I'm the Australian Income-Tax Bot, I'm going to help you figure out your Income tax!"
-          sendTextMessage(sender, welcomeMessage)
+          sendTextMessage(sender, helloRandomizer)
             text = event.message.text
             if (text === 'Generic') {
                 sendGenericMessage(sender)
@@ -140,3 +147,7 @@ function sendGenericMessage(sender) {
 
 //extensions
 String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
+
+function getRandom(min, max) {
+    return min + Math.floor(Math.random() * (max - min + 1));
+}
