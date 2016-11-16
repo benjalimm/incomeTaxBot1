@@ -37,59 +37,38 @@ app.listen(app.get('port'), function() {
 })
 
 // Hello Randomizer
-// const hello = ["Hey there.", "Hello there.", "Eyy bra!"]
-// const howCanIHelpYou = ["How may I be of assistance?", "How can I help you?", "Can I help you with anything"]
-// var helloRandomizer = (hello[getRandom(0,2)] + " " + howCanIHelpYou[getRandom(0,2)])
-//
-// app.post('/webhook/', function (req, res) {
-//     messaging_events = req.body.entry[0].messaging
-//     for (i = 0; i < messaging_events.length; i++) {
-//         event = req.body.entry[0].messaging[i]
-//         sender = event.sender.id
-//         if (event.message && event.message.text) {
-//           sendTextMessage(sender, helloRandomizer)
-//             text = event.message.text.toLowerCase()
-//             if (text.contains("options")) {
-//                 sendGenericMessage(sender)
-//                 continue
-//             } else if (text.contains("hey")) {
-//               sendTextMessage(sender, "Hey there baby gurrlll")
-//               break
-//             }
-//             // sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-//             sendTextMessage(sender, "I'm not entirely sure what you're saying... Try me again")
-//         }
-//         if (event.postback) {
-//             text = JSON.stringify(event.postback)
-//             sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
-//             continue
-//         }
-//     }
-//     res.sendStatus(200)
-// })
+const hello = ["Hey there.", "Hello there.", "Eyy bra!"]
+const howCanIHelpYou = ["How may I be of assistance?", "How can I help you?", "Can I help you with anything"]
+var helloRandomizer = (hello[getRandom(0,2)] + " " + howCanIHelpYou[getRandom(0,2)])
 
-bot.dialog('/webhook/', [
-    function (session, args, next) {
-        if (!session.userData.name) {
-            session.beginDialog('/profile');
-        } else {
-            next();
+app.post('/webhook/', function (req, res) {
+    messaging_events = req.body.entry[0].messaging
+    for (i = 0; i < messaging_events.length; i++) {
+        event = req.body.entry[0].messaging[i]
+        sender = event.sender.id
+        if (event.message && event.message.text) {
+          sendTextMessage(sender, helloRandomizer)
+            text = event.message.text.toLowerCase()
+            if (text.contains("options")) {
+                sendGenericMessage(sender)
+                continue
+            } else if (text.contains("hey")) {
+              sendTextMessage(sender, "Hey there baby gurrlll")
+              break
+            }
+            // sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+            sendTextMessage(sender, "I'm not entirely sure what you're saying... Try me again")
         }
-    },
-    function (session, results) {
-        session.send('Hello %s!', session.userData.name);
+        if (event.postback) {
+            text = JSON.stringify(event.postback)
+            sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+            continue
+        }
     }
-]);
+    res.sendStatus(200)
+})
 
-bot.dialog('/profile', [
-    function (session) {
-        builder.Prompts.text(session, 'Hi! What is your name?');
-    },
-    function (session, results) {
-        session.userData.name = results.response;
-        session.endDialog();
-    }
-]);
+
 
 var token = "EAAJCLxLPxrQBAOxGQPRh6xmWEnFdlZAcWbg5bUWm2k2eOzUPLC5WEAZCzr1Ti2cIDU3qEUlI0fbEsYiKQxF2v4LYmL0EQCjtmEmGnaIy4MZCZC2mG2Gmo99XOcQ5lKelojZB3vqpoFCJZCUpMG69R3Xf3qm0L1DxQ5zte3Cl3M3AZDZD"
 
