@@ -37,9 +37,6 @@ app.listen(app.get('port'), function() {
 })
 
 // Hello Randomizer
-const hello = ["Hey there.", "Hello there.", "Eyy bra!"]
-const howCanIHelpYou = ["How may I be of assistance?", "How can I help you?", "Can I help you with anything"]
-var helloRandomizer = (hello[getRandom(0,2)] + " " + howCanIHelpYou[getRandom(0,2)])
 
 app.post('/webhook/', function (req, res) {
     messaging_events = req.body.entry[0].messaging
@@ -150,8 +147,3 @@ function sendGenericMessage(sender) {
 }
 
 //extensions
-String.prototype.contains = function(it) { return this.indexOf(it) != -1; }; // checks to see if string contains ..
-
-function getRandom(min, max) {
-    return min + Math.floor(Math.random() * (max - min + 1)); // randomizes number
-}
