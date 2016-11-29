@@ -2,7 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
-var bot = require('./bot.js')
+var bot2 = require('./bot.js')
 //BotBuilder
 var builder = require('botbuilder');
 var connector = new builder.ConsoleConnector().listen();
@@ -54,21 +54,6 @@ app.post('/webhook/', function (req, res) {
               sendTextMessage(sender, reply)
               break
             }
-        //     if (text.contains("options")) {
-        //         sendGenericMessage(sender)
-        //         continue
-        //     } else if (text.contains("hey")) {
-        //       sendTextMessage(sender, "Hey there baby gurrlll")
-        //       break
-        //     }
-        //     // sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-        //     sendTextMessage(sender, "I'm not entirely sure what you're saying... Try me again")
-        // }
-        // if (event.postback) {
-        //     text = JSON.stringify(event.postback)
-        //     sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
-        //     continue
-        // }
     res.sendStatus(200)
 })
 
