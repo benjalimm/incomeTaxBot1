@@ -30,7 +30,7 @@ function calcTax () {
     let s6 = "This means that ${percPaid()}% of your total income goes to tax.";
 
     // let s7 = "The total tax paid consists of the income tax of $\(taxPaid()) and Medicare levy of $\(mediCare()) added together."
-    
+
     if (income <= 18200) {
         return "${s0}"
     } else {

@@ -50,11 +50,11 @@ app.post('/webhook/', function (req, res) {
             text = event.message.text.toLowerCase()
             if isNaN(text) == false {
               income = parseInt(text) + "<br>";
-              sendTextMessage(sender, calcTax)
+              sendTextMessage(sender, calcTax())
               continue
             } else {
               let reply = "Your input has to be number. For example, if your annual income is $40000, you will just input 40000.";
-              sendTextMessage(sender, reply);
+              sendTextMessage(sender, reply)
             }
         //     if (text.contains("options")) {
         //         sendGenericMessage(sender)
